@@ -22,6 +22,9 @@ services:
             - type: bind
               source: ./moodle
               target: /var/www/moodle
+            - type: bind
+              source: ./moodledata
+              target: /moodledata
 
 networks:
     platao-net:
