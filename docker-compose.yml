@@ -20,7 +20,7 @@ services:
             - platao-net
         volumes:
             - type: bind
-              source: ./moodlecode
+              source: ./moodle
               target: /var/www/moodle
 
 networks:
