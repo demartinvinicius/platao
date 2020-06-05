@@ -2,15 +2,19 @@ version: "3.8"
 services:
     bancodados:
         image: "mysql:latest"
-        environment: 
-            MYSQL_ROOT_PASSWORD: "M#str@d0"
-            MYSQL_DATABASE: "moodledb"
-            MYSQL_USER: "moodleuser"
-            MYSQL_PASSWORD: "M#str@d0"
+        #environment: 
+        #    MYSQL_ROOT_PASSWORD: "M#str@d0"
+        #    MYSQL_DATABASE: "moodledb"
+        #    MYSQL_USER: "moodleuser"
+        #    MYSQL_PASSWORD: "M#str@d0"
         ports:
-            - "3306:3306"
+            - "3307:3306"
         networks:
             platao-net:
+        volumes:
+            - type: volume
+              source: dbvolume
+              target: /var/lib/mysql
 
     moodleapp:
         build: .
@@ -19,12 +23,20 @@ services:
         networks: 
             - platao-net
         volumes:
-            - type: bind
-              source: ./moodle
-              target: /var/www/moodle
-            - type: bind
-              source: ./moodledata
+            - type: volume
+              source: moodle-vol
+              target: /var/www
+
+            - type: volume
+              source: moodledata-vol
               target: /moodledata
+
 
 networks:
     platao-net:
+
+volumes: 
+    moodle-vol:
+    moodledata-vol:
+    dbvolume:
+
