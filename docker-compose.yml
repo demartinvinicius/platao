@@ -20,6 +20,7 @@ services:
         build: .
         ports: 
             - "80:80"
+            - "443:443"
         networks: 
             - platao-net
         volumes:
@@ -29,7 +30,7 @@ services:
 
             - type: volume
               source: moodledata-vol
-              target: /moodledata
+              target: /usr/moodledata
 
 
 networks:

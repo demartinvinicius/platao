@@ -8,7 +8,11 @@ COPY ./apachestuff/ /etc/apache2/sites-available
 ADD ./moodle-latest-38.tgz /var/www
 COPY ./certs/ /usr/certificado/
 
-RUN a2enmod ssl & a2enmod rewrite & a2ensite 001-pyapp.conf & a2ensite 001-pyapp-le-ssl.conf
-EXPOSE 443
-ENTRYPOINT [ "apache2ctl" ]
-CMD ["-DFOREGROUND"]
+RUN a2enmod ssl
+RUN a2enmod rewrite 
+RUN a2ensite 001-pyapp.conf 
+RUN a2ensite 001-pyapp-le-ssl.conf
+WORKDIR /
+COPY ./startup.sh /
+EXPOSE 80 443
+ENTRYPOINT [ "/startup.sh" ]
