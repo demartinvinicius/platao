@@ -2,11 +2,11 @@ version: "3.8"
 services:
     bancodados:
         image: "mysql:latest"
-        #environment: 
-        #    MYSQL_ROOT_PASSWORD: "M#str@d0"
-        #    MYSQL_DATABASE: "moodledb"
-        #    MYSQL_USER: "moodleuser"
-        #    MYSQL_PASSWORD: "M#str@d0"
+        environment: 
+            MYSQL_ROOT_PASSWORD: "M#str@d0"
+            MYSQL_DATABASE: "moodledb"
+            MYSQL_USER: "moodleuser"
+            MYSQL_PASSWORD: "M#str@d0"
         ports:
             - "3307:3306"
         networks:
