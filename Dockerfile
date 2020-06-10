@@ -12,7 +12,10 @@ RUN a2enmod ssl
 RUN a2enmod rewrite 
 RUN a2ensite 001-pyapp.conf 
 RUN a2ensite 001-pyapp-le-ssl.conf
-WORKDIR /
-COPY ./startup.sh /
+COPY ./startup.sh /scripts/startup.sh
+
+COPY ./config.php /teste/config.php
+RUN ["mv","/teste/config.php","/var/www/moodle/config.php"]
+RUN ["chmod","+x","/scripts/startup.sh"]
+ENTRYPOINT [ "/scripts/startup.sh" ]
 EXPOSE 80 443
-ENTRYPOINT [ "/startup.sh" ]
