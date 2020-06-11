@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.0"
 services:
     bancodados:
         image: "mysql:latest"
@@ -12,9 +12,7 @@ services:
         networks:
             platao-net:
         volumes:
-            - type: volume
-              source: dbvolume
-              target: /var/lib/mysql
+            - /var/lib/mysql
 
     moodleapp:
         build: .
@@ -24,14 +22,8 @@ services:
         networks: 
             - platao-net
         volumes:
-            - type: volume
-              source: moodle-vol
-              target: /var/www/moodle
-
-            - type: volume
-              source: moodledata-vol
-              target: /usr/moodledata
-
+            - /var/www/moodle
+            - /usr/moodledata
 
 networks:
     platao-net:

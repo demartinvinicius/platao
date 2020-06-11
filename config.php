@@ -6,7 +6,7 @@ $CFG = new stdClass();
 
 $CFG->dbtype    = 'mysqli';
 $CFG->dblibrary = 'native';
-$CFG->dbhost    = 'bancodados';
+$CFG->dbhost    = 'localhost';
 $CFG->dbname    = 'moodledb';
 $CFG->dbuser    = 'moodleuser';
 $CFG->dbpass    = 'M#str@d0';
