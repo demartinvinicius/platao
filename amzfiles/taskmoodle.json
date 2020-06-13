@@ -1,5 +1,5 @@
 {
-    "family": "aplicativomoodle",
+    "family": "fallinlove",
     "taskRoleArn": "arn:aws:iam::416778555021:role/taskstotal",
     "executionRoleArn": "arn:aws:iam::416778555021:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
@@ -45,7 +45,7 @@
 
         {
             "name": "moodleapp",
-            "image": "mindsforai/moodleapp",
+            "image": "mindsforai/moodleapp:0.1.6",
             "portMappings": [
                 {
                     "containerPort": 80,
