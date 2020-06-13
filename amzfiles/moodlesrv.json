@@ -1,0 +1,19 @@
+{
+    "cluster": "testecmd",
+    "serviceName": "novomoodle",
+    "taskDefinition": "aplicativomoodle",
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "platformVersion": "1.4.0",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-1b1b0625"
+            ],
+            "securityGroups": [
+                "sg-005affa65a8874d2a"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    }   
+}

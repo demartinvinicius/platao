@@ -1,0 +1,94 @@
+{
+    "family": "aplicativomoodle",
+    "taskRoleArn": "arn:aws:iam::416778555021:role/taskstotal",
+    "executionRoleArn": "arn:aws:iam::416778555021:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "bancodados",
+            "image": "mysql",
+            "portMappings": [
+                {
+                    "containerPort": 3306,
+                    "hostPort": 3306,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "M#str@d0"
+                },
+                {
+                    "name": "MYSQL_DATABASE",
+                    "value": "moodledb"
+                },
+                {
+                    "name": "MYSQL_USER",
+                    "value": "moodleuser"
+                },
+                {
+                    "name": "MYSQL_PASSWORD",
+                    "value": "M#str@d0"
+                }
+            ],
+            "mountPoints": [
+                {
+                    "sourceVolume": "dbvolume",
+                    "containerPath": "/var/lib/mysql",
+                    "readOnly": false
+                }
+            ],
+            "disableNetworking": false
+        },
+
+        {
+            "name": "moodleapp",
+            "image": "mindsforai/moodleapp",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 443,
+                    "hostPort": 443,
+                    "protocol": "tcp"
+                }
+
+            ],
+            "essential": true,
+            "mountPoints": [
+                {
+                    "sourceVolume": "moodledata-vol",
+                    "containerPath": "/usr/moodledata",
+                    "readOnly": false
+                }
+
+            ],
+            "disableNetworking": false
+        }
+
+
+
+    ],
+    "volumes": [
+        {
+            "name": "dbvolume"
+            
+
+        },
+        {
+            "name": "moodledata-vol"
+            
+        }
+
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024"
+}
